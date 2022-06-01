@@ -1,0 +1,31 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Linear Combinations of Vectors</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m57561</md:content-id>
+  <md:title>Linear Combinations of Vectors</md:title>
+  <md:abstract/>
+  <md:uuid>ba6c282e-33b7-4664-9f5d-bb038a8cd21c</md:uuid>
+</metadata>
+
+<content>
+  <para id="delete_me"><!-- Insert module text here -->
+In the study of signals and signal processing, there is a particular mathematical operation that will show up quite a few times, that of a <term>linear combination</term>. Given a collection of vectors in a vector space, say $M$ vectors $x_0, x_1, \dots x_{M-1} \in C^N$, and $M$ scalars $\alpha_0, \alpha_1, \dots, \alpha_{M-1} \in C$, then the linear combination of these vectors is:
+$y=\alpha_0 x_0 + \alpha_1 x_1 + \dots + \alpha_{M-1} x_{M-1} = \sum_{m=0}^{M-1} \alpha_m x_m$. The result is itself also a vector in the vector space.</para><para id="eip-199"><title>Linear Combination Example: A Mixing Board</title>A linear combination is a scaled sum of different vectors in a vector space. A real world example of a linear combination is the mixing board used in music recording studios. The board takes in a variety of different inputs and combines them--amplifying some, reducing the level of others--to create a single output of music. Mathematically, we could say $x_0=$ drums, $x_1=$ bass, $x_2=$ guitar, \dots, $x_{22}=$ saxophone, $x_{23}=$ singer, and then the mixing board creates the linear combination
+$y = \alpha_0 x_0 + \alpha_1 x_1 + \dots + \alpha_{M-1} x_{M-1} = \sum_{m=0}^{M-1} \alpha_m x_m$.
+Changing the different $\alpha_m$'s would result in a different kind of sound that either emphasized or de-emphasizes certain instruments. For example, the producer in the studio that day may be particularly interested in the cowbell.</para><para id="eip-303"><title>Linear Combinations as Matrix Multiplication</title>It is possible to express a linear combination without explicitly using sums, but rather as the product of a matrix and a vector. To do this, all of the vectors to be scaled and summed in the linear combination must first be arranged into a matrix:
+$\begin{align*}
+X &amp;= \begin{bmatrix} x_0 | x_1 | \cdots | x_{M-1} \end{bmatrix}\\
+&amp;=\begin{bmatrix}
+x_0[0] &amp;x_1[0] &amp;\cdots &amp;x_{M-1}[0] \\
+x_0[1] &amp;x_1[1] &amp;\cdots &amp;x_{M-1}[1] \\
+\vdots &amp;\vdots &amp;&amp;\vdots \\
+x_0[N-1] &amp;x_1[N-1] &amp;\cdots &amp;x_{M-1}[N-1] \end{bmatrix}
+\end{align*}$
+Then the scaling factors for each vector are stacked into a single vector:
+$a = \begin{bmatrix}\alpha_0 \\ \alpha_1 \\ \vdots \\ \alpha_{M-1} \end{bmatrix}$
+Once those are in place, the linear combination is ultimately expressed as a simple matrix-vector multiplication:
+$y=\alpha_0 x_0 + \alpha_1 x_1 + \dots + \alpha_{M-1} x_{M-1} = \sum_{m=0}^{M-1} \alpha_m x_m
+= \begin{bmatrix}x_0 | x_1 | \cdots | x_{M-1} \end{bmatrix}\begin{bmatrix}\alpha_0 \\ \alpha_1 \\ \vdots \\ \alpha_{M-1} \end{bmatrix}= X a$</para></content>
+
+</document>

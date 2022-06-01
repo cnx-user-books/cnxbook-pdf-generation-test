@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Norms and Inner Products of Infinite Length Vectors</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m57554</md:content-id>
+  <md:title>Norms and Inner Products of Infinite Length Vectors</md:title>
+  <md:abstract/>
+  <md:uuid>a5760e83-3a00-45f7-8900-fc4ff16f7fad</md:uuid>
+</metadata>
+
+<content>
+  <para id="delete_me"><!-- Insert module text here -->
+Like as with finite length signals (which can be understood as vectors in $R^N$ or $C^N$), we can take the norms and inner products of infinite length signals, as well. For the most part, the concepts will apply just the same.</para><para id="eip-167"><title>The Norms of Infinite Length Vectors</title>As with finite-length vectors, the $p$-norm for infinite-length vectors is a sum:
+$\|x\|_p = \left( \sum_{n=-\infty}^{\infty} |x[n]|^p \right)^{1/p}$
+Unlike with the $p$-norms of finite-length signals, the summation for infinite length vectors is necessarily fininite. As a consequence, the $p$-norms of infinite length signals may not be bounded. Consider a finite-length signal $x[n]=1$ for $0\leq n\lt N-1$. The $2$ norm for this signal would be $\sqrt{N}$. However, for an infinite length signal of constant value 1, all the $p$ norms will be unbounded!</para><para id="eip-916">For some infinite length vectors, the $p$ norm may only exist for certain values of $p$. Consider the signal:
+$x[n] = \begin{cases}
+	0 &amp; n\leq0 \\
+	\frac{1}{n} &amp; n\geq 1 \\
+\end{cases}$
+<figure id="oneovern"><media id="oneovern-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/oneovern.svg"/>
+<image mime-type="application/postscript" src="../../media/oneovern.eps" for="pdf"/>
+</media></figure>
+The 2-norm of this signal exists:
+$\|x\|_2^2 = \sum_{n=-\infty}^{\infty} |x[n]|^2 = \sum_{n=1}^{\infty} \left|\frac{1}{n}\right|^2
+= \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} \approx 1.64$
+But the 1-norm is unbounded:
+$\|x\|_1 = \sum_{n=-\infty}^{\infty} |x[n]| = \sum_{n=1}^{\infty} \frac{1}{n} = \infty$</para><para id="eip-152">For a finite-length vector, the $\infty$ norm is simply the maximum value of the magnitudes of all its elements. For infinite-length vectors, it is instead the <term>supremum</term>, or the <term>least upper bound</term> of the set of all the elements of the vector. The distinction between that value, and the maximum value, of the set is outside the bounds of this course. For all the cases we will consider, the $\infty$ norm will simply be the largest of the magnitudes of the elements of the vector. For example, for the signal $x[n]$ below, $\|x\|_\infty=1$:
+<figure id="oneovern2"><media id="oneovern2-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/oneovern.svg"/>
+<image mime-type="application/postscript" src="../../media/oneovern.eps" for="pdf"/>
+</media></figure></para><para id="eip-407"><title>Inner Product of Infinite Length Signals</title>The inner product of infinite length signals is defined the same way as for finite-length signals, except that the sum is infinite:
+$\langle x, y \rangle = \sum_{n=-\infty}^{\infty} x[n] \, y[n]^*$
+The angle is also the same:
+$\cos \theta_{x,y} = \frac{\Re{\langle x, y \rangle}}{\|x\|_2 \, \|y\|_2}$</para><para id="eip-462"><title>Linear Combinations of Infinite Length Vectors</title>When it comes to infinite-length vectors, we will also be interested in linear combinations of them. However, in contrast with finite-length vectors, we will be interested in the linear combination of an infinite number of the vectors:
+$y = \sum_{m=-\infty}^{\infty} \alpha_m x_m$
+As with finite-length vectors, infinite-length vectors can be stacked into a matrix (an infinitely large one) and be multiplied by an infinite length vector of scalers to perform linear combination:
+$X = \begin{bmatrix} \cdots | x_{-1} | x_0 | x_1 | \cdots \end{bmatrix}$
+$a = \begin{bmatrix} \vdots \\ \alpha_{-1} \\ \alpha_0 \\ \alpha_1 \\ \vdots \end{bmatrix}$
+
+$\begin{align*}y&amp;= \sum_{m=-\infty}^{\infty} \alpha_m x_m
+&amp;= \begin{bmatrix} 
+           &amp; \vdots &amp; \vdots &amp; \vdots &amp;  \\
+\cdots &amp; x_{-1}[-1] &amp; x_{0}[-1] &amp; x_{1}[-1] &amp; \cdots \\
+\cdots &amp; x_{-1}[0] &amp; x_{0}[0] &amp; x_{1}[0] &amp; \cdots \\
+\cdots &amp; x_{-1}[1] &amp; x_{0}[1] &amp; x_{1}[1] &amp; \cdots \\
+           &amp; \vdots &amp; \vdots &amp; \vdots &amp;  \\
+\end{bmatrix}  \begin{bmatrix} \vdots \\ \alpha_{-1} \\ \alpha_0 \\ \alpha_1 \\ \vdots \end{bmatrix}
+&amp;= X a$</para></content>
+
+</document>

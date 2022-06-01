@@ -1,0 +1,98 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Inner Products and Orthogonality</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m57618</md:content-id>
+  <md:title>Inner Products and Orthogonality</md:title>
+  <md:abstract/>
+  <md:uuid>ae07056c-3869-4fa5-bba4-c68910470847</md:uuid>
+</metadata>
+
+<content>
+  <para id="delete_me"><!-- Insert module text here -->
+In discrete-time signal processing, understanding signals as vectors within a vector space allows us to use tools of analysis and linear algebra to examine signal properties. One of the properties we may want to consider is the similarity of (or difference between) two vectors. A mathematical tool that provides insight into this is the <term>inner product</term>.</para><para id="eip-433"><title>Transposing Vectors</title>One of the ways to express the inner product of two vectors is through matrix multiplication, so first we must introduce the concept of transposing vectors. In order to multiply two matrices (a vector is simply a matrix in which one of the dimensions is 1), the column dimension of the first must match the row dimension of the second. To make those match for two vectors of the same length, we must <term>transpose</term> one of them. To take the transpose of a matrix, simply turn the rows into columns: the first row will become the first column in the transposed matrix; the second row, the second column, and so on. Here is how that looks for a vector. An $N$-row, single column vector transposed becomes a 1 row, $N$-column vector:
+$\begin{bmatrix}x[0] \\ x[1] \\ \vdots \\ x[N-1] \end{bmatrix}^T = \begin{bmatrix}x[0] &amp; x[1] &amp; \cdots &amp; x[N-1] \end{bmatrix}$
+</para><para id="eip-672">Now, when it comes to complex valued vectors, we can take a transpose in the same way, but for the purposes of finding an inner product we actually need to take the conjugate, or Hermitian, transpose, which involves taking the transpose and then the complex conjugate:
+$\begin{bmatrix}x[0] \\ x[1] \\ \vdots \\ x[N-1] \end{bmatrix}^H =\begin{bmatrix}x[0]^* &amp; x[1]^* &amp; \cdots &amp; x[N-1]^* \end{bmatrix}$
+Of course, for real valued vectors, the regular transpose and Hermitian transpose are identical.</para><para id="eip-854"><title>The Inner Product</title>The inner product of two complex (or real) valued vectors is defined as:
+$\langle x, y \rangle = y^H x = \sum_{n=0}^{N-1} x[n] \, y[n]^*$
+So the inner product operation takes two vectors as inputs and produces a single number. It turns out that the number it produces is related to the angle $\theta$ between the two vectors:
+$\cos \theta_{x,y} = \frac{\Re{\langle x, y \rangle}}{\|x\|_2 \, \|y\|_2}$
+This formula works for complex and real vectors, although taking the real part of the inner product is redundant for real valued ones.</para><para id="eip-630">For two (or three) dimensional vectors, this angle is exactly what you would expect it to be. Let 
+$x=\begin{bmatrix}1 \\ 2 \end{bmatrix}$, ~ $y=\begin{bmatrix}3 \\ 2 \end{bmatrix}$
+We have
+$\|x\|_2^2 = 1^2 + 2^2 = 5$, $\|y\|_2^2 = 3^2 + 2^2 = 13$ ,and $\langle x, y \rangle=(1)(3)+(2)(2)=7$.
+The angle between them is $\arccos\left(\frac{7}{\sqrt{(5)(13)}}\right) \approx 0.519~{\rm rad} \approx 29.7^\circ$. If you plot the vectors out in the Cartesian plane, you will indeed see an angle between them of about 30 degrees.</para><para id="eip-751">For higher dimensional signals the result of the inner product--how it relates to the angle between signals--may not seem as intuitive, but the information it provides is still just as useful, and of course it is computed in the same was as with shorter vectors. Consider the signals below:<figure id="sigFun10s" orient="vertical"><subfigure id="sigFun10-plot">
+<media id="sigFun10" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sigFun10.svg"/>
+<image mime-type="application/postscript" src="../../media/sigFun10.eps" for="pdf"/></media>
+</subfigure>
+<subfigure id="sigFun11">
+<media id="sigFun11-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sigFun11.svg"/>
+<image mime-type="application/postscript" src="../../media/sigFun11.eps" for="pdf"/></media>
+</subfigure>
+</figure>
+The inner product of these two signals, computed according to the formula above, is $\langle x, y \rangle ~=~ y^T x ~=~  5.995$, which corresponds to an angle of $\theta_{x,y} ~=~ 64.9^\circ$.</para><para id="eip-509"><title>Inner product: Limiting Cases</title>Recall that the inner product is defined as a sum ($\sum_{n=0}^{N-1} x[n] \, y[n]^*$), which can also be expressed as a vector product ($y^H x$). Let's look at a couple of interesting values that sum could take.</para><para id="eip-270">The dot product of two signals could be rather large. If the signals are identical, it is simply the norm of the signal, squared: 
+$\langle x, x \rangle = \sum_{n=0}^{N-1} x[n] \, x[n]^* = \sum_{n=0}^{N-1} |x[n]|^2 = \|x\|_2^2$.</para><para id="eip-363">On the other hand, it is also possible for the dot product sum to be 0. Consider the two signals below:
+<figure id="orthog1as" orient="vertical"><subfigure id="orthog1a-plot">
+<media id="orthog1a" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/orthog1a.svg"/>
+<image mime-type="application/postscript" src="../../media/orthog1a.eps" for="pdf"/></media>
+</subfigure>
+<subfigure id="orthog1b">
+<media id="orthog1b-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/orthog1b.svg"/>
+<image mime-type="application/postscript" src="../../media/orthog1b.eps" for="pdf"/></media>
+</subfigure>
+</figure>
+The inner product of those two signals is obviously zero because each pointwise product is also zero. But it is possible, of course, for products in the sum to be nonzero and still have the total add up to zero:
+<figure id="orthog2as" orient="vertical"><subfigure id="orthog2a-plot">
+<media id="NAME" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/orthog2a.svg"/>
+<image mime-type="application/postscript" src="../../media/orthog2a.eps" for="pdf"/></media>
+</subfigure>
+<subfigure id="orthog2b">
+<media id="orthog2b-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/orthog2b.svg"/>
+<image mime-type="application/postscript" src="../../media/orthog2b.eps" for="pdf"/></media>
+</subfigure>
+</figure>
+Whenever the inner product of two signals is zero, it is defined that those signals are <term>orthogonal</term>. </para><para id="eip-51"><title>Orthogonality of Harmonic Sinusoids</title>Recall the special class of discrete-time finite length signals called harmonic sinusoids: $s_k[n] = e^{j \frac{2 \pi k}{N} n}, ~~~ n,k,N\in\Integers, ~~ 0\leq n \leq N-1, ~~ 0\leq k \leq N-1$
+It is a very interesting property that any two of these sinusoids having different frequencies (i.e., $k\neq l$) are orthogonal:
+$\begin{align*}
+\langle s_k | s_l \rangle &amp;= \sum_{n=0}^{N-1} d_k[n] d_l^*[n]\\
+&amp;= \sum_{n=0}^{N-1} e^{j \frac{2 \pi k}{N} n}  (e^{j \frac{2 \pi l}{N} n})^*\\
+&amp;= \sum_{n=0}^{N-1} e^{j \frac{2 \pi k}{N} n} \: e^{-j \frac{2 \pi l}{N} n} \\
+&amp;= \sum_{n=0}^{N-1} e^{j \frac{2 \pi}{N} (k-l) n} ~~~ \textrm{let }r=k-l \in I, r\neq 0 \\
+&amp;= \sum_{n=0}^{N-1} e^{j \frac{2 \pi}{N} r n}\\
+&amp;=\sum_{n=0}^{N-1} a^n ~~~ \textrm{with }~a=e^{j \frac{2 \pi}{N} r},\textrm{and recall }\sum_{n=0}^{N-1} a^n = \frac{1-a^N}{1-a} \\
+  &amp;= \frac{ 1- e^{j \frac{2 \pi r N }{N}} }{1-e^{j \frac{2 \pi r}{N}} } ~=~ 0 ~~\checkmark
+\end{align*}$
+If two of these sinusoids have the same frequency, then their inner product is simply $N$:
+$\begin{align*}
+\|s_k \|_2^2 &amp;= \sum_{n=0}^{N-1} |d_k[n]|^2 \\
+&amp;= \sum_{n=0}^{N-1} |e^{j \frac{2 \pi k}{N} n}|^2\\
+&amp;=\sum_{n=0}^{N-1} 1 ~=~ N\checkmark
+\end{align*}$</para><para id="eip-504">So the dot product of two harmonic sinusoids is zero if their frequencies are different, and $N$ if they are the same. In order to make latter number is $1$, instead of $N$, they are sometimes normalized:
+$\tilde{d}_k[n] = \frac{1}{\sqrt{N}}\, e^{j \frac{2 \pi k}{N} n},
+~~~ n,k,N\in Z, ~~ 0\leq n \leq N-1, ~~ 0\leq k \leq N-1$
+</para><para id="eip-76"><title>Matrix Multiplication and Inner Products</title>Let's take look at the formula for the matrix multiplication $y=Xa$. For notation, we will represent the value on the $n$th row and $m$th column of $X$ as $x_m[n]$. The matrix multiplication looks like this:
+\begin{bmatrix}\vdots  &amp; \vdots &amp;&amp; \vdots  \\
+x_0[n] &amp; x_1[n] &amp; \cdots &amp; x_{M-1}[n] \\
+\vdots  &amp; \vdots &amp;&amp; \vdots \end{mbatrix}
+And the value for the multiplication is:
+$y[n] = \sum_{m=0}^{M-1} \alpha_m \, x_m[n]$
+Hopefully that formula looks familiar! What it is showing is that the matrix multiplication $y=Xa$ is simply the inner product of $a$ with each row of $X$, when $X$ and $a$ are real. If they are complex valued, then the complex conjugate of one of them would have to be performed before the matrix multiplication for each value of $y$ to be the inner product of the matrix row with $a$.</para><para id="eip-633"><title>The Cauchy Schwarz Inequality</title>Above we saw that the inner product of two vectors can be as small as 0, in which case the vectors are orthogonal, or it can be large, such as when the two vectors are identical (and the inner product is simply the norm of  the vector, squared). It turns out that there is a very significant inequality that explains these two cases. It is called the <term>Cauchy Schwarz Inequality</term>, which states that for two vectors $x$ and $y$,
+$|\langle x,y \rangle |\leq |\x\| \|y\|$
+Now the magnitude of the inner product is always greater than or equal to 0 (being 0 if the vectors are orthogonal), so we can expand the inequality thus:
+$0\leq |\langle x,y \rangle |\leq |\x\| \|y\|$
+If we divide the equation by $|\x\| \|y\|$, then we have
+$0\leq \frac{|\langle x,y \rangle |}{|\x\| \|y\|}\leq 1$
+This explains why we can define
+$\cos \theta_{x,y} = \frac{\Re{\langle x, y \rangle}}{\|x\|_2 \, \|y\|_2}$, 
+for the cosine function also has a range of 0 to 1.
+
+</para><para id="eip-609">Now there are many different proofs of the inequality, and it is something of a mathematical pastime to appreciate their various constructions. But for signal processing purposes, we are more interested in the utility of the inequality. What it basically says is that--when the lengths of two vectors are taken into consideration--their inner product ranges in value from 0 to 1. Because of this, we can see that the inner product introduces some kind of comparison between two different vectors. It is at its smallest when they are, in a sense, very different from each other, or <term>orthogonal</term>. It is at its peak when the vectors are simply scalar multiples of each other, or in other words, are very alike.</para><para id="eip-419">It turns out there are many application in which we would like to determine how similar one signal is to another. How does a digital communication system decide whether the signal corresponding to a "0" was transmitted or the signal corresponding to a "1"? How does a radar or sonar system find targets in the signal it receives after transmitting a pulse? How does many computer vision systems find faces in images? For each of these questions, the similarity/dissimilarity bounds established by the Cauchy Schwarz inequality help us to determine the answer.</para></content>
+
+</document>

@@ -1,0 +1,82 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+
+<title>Signals are Vectors</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m57492</md:content-id>
+  <md:title>Signals are Vectors</md:title>
+  <md:abstract/>
+  <md:uuid>b3754f43-6ba2-4546-93f1-229a4fd324fd</md:uuid>
+</metadata>
+
+<content>
+  <para id="delete_me"><!-- Insert module text here -->
+One mathematical way of understanding signals is to see them as functions. A signal $x[n]$ carries some kind of information, having a value $x[n]$ at every given point of its independent time variable $n$. Another, and complementary, way of understanding signals is to consider them as vectors within vector spaces. By doing this we will be able to apply various tools of linear algebra to help us better understand signals and the systems that modify them.</para><para id="eip-687"><title>Vector Spaces</title>A <term>vector space</term> $V$ is a collection of vectors such that if $x, y \in V$ and $\alpha$ is a scalar then 
+$ \alpha x \in V \text{and} x+y \in V $
+In words, this means that if two vectors are elements of a vector space, any combination or scaled version of them is also in the space. When we consider the scaling factors, we mean $\alpha$ that are either real or complex numbers.</para><para id="eip-954">There are many different kinds of vector spaces, but the two in which we are especially interested are $R^N$ and $C^N$. $R^N$ is the set of all vectors of dimension $N$, in which every entry of the vector is a real number, and $C^N$ is exactly the same, except the entries are complex valued.</para><para id="eip-562"><title>Starting Small – A Two Dimensional Vector Space</title>You are already familiar with a prominent example of a vector space, the two-dimensional real coordinate space $R^2$. Every ordered combination of two real numbers is a vector in this space, and can be visualized as a point or arrow in the two-dimensional Cartesian plane. Suppose $x$ and $y$ are each vectors in $R^2$. 
+$x=\begin{bmatrix}
+x[0] \\ x[1]
+\end{bmatrix}
+$y=\begin{bmatrix}
+y[0] \\ y[1]
+\end{bmatrix}
+where $x[0], x[1], y[0], y[1]\in R$. The indices we use to refer to elements of the vector start their numbering at $0$. This is the common convention in signal processing and many mathematical languages, like $C$, but note that vector indices in MATLAB start with 1.
+Scaled versions of these vectors are still within the space:
+$\alpha x=\alpha \begin{bmatrix}
+x[0] \\ x[1]
+\end{bmatrix}=\begin{bmatrix}
+\alpha x[0] \\ \alpha x[1]
+\end{bmatrix}\in R^2$
+So is the sum of two vectors:
+$x+y=\begin{bmatrix}
+x[0] \\ x[1]
+\end{bmatrix}+\begin{bmatrix}
+y[0] \\ y[1]
+\end{bmatrix}=\begin{bmatrix}
+x[0]+y[0] \\ x[1]+y[1]
+\end{bmatrix}\in R^2$</para><para id="eip-881"><title>The Vector Space $R^N$</title>Let's now move from two dimensional vectors to those with $N$ dimensions, each taking a real valued number:
+$x=\begin{bmatrix}x[0] \\ x[1] \\ \vdots \\ x[N-1] \end{bmatrix}$, where $x[n]\in\Real$
+So we have a mathematical entity $x$, with $N$ ordered real values associated with it. Stated this way, we see that $x$ is a signal, simply expressed in a vector form $x$ as opposed to the signal notation form $x[n]$, but both forms refer to the exact same thing.</para><para id="eip-65">Just as with in 2-dimensions, we can perform the same operations on the $N$-dimensional signal/vector $x$:
+<figure id="sigfunscales" orient="vertical"><subfigure id="sigFun3-plot">
+<media id="sigFun3" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sigFun3.svg"/>
+<image mime-type="application/postscript" src="../../media/sigFun3.eps" for="pdf"/></media><caption>An example of an $N$-dimensional signal/vector $x$.</caption>
+</subfigure>
+<subfigure id="sigFunScaled1">
+<media id="sigFunScaled1-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sigFunScaled1.svg"/>
+<image mime-type="application/postscript" src="../../media/sigFunScaled1.eps" for="pdf"/></media><caption>The signal $x$, scaled by $\alpha=3$.</caption>
+</subfigure>
+<caption>When a vector $x$ in $R^N$ is scaled by $\alpha\in R$, the result is still in $R^N$.</caption></figure>
+When each of the real-valued elements of $x$ is scaled by a real value $\alpha$, the results are still real-valued, of course, so the resulting scaled vector is still within $R^N$. As $R^N$ is a vector space, that should come as no surprise, and neither should the fact that the sum of two vectors in $R^N$ is itself another vector in the vector space $R^N$:
+<figure id="rnsums" orient="vertical"><subfigure id="sum1a-plot">
+<media id="sum1a" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sum1a.svg"/>
+<image mime-type="application/postscript" src="../../media/sum1a.eps" for="pdf"/></media>
+</subfigure>
+<subfigure id="sum2a">
+<media id="sum2a-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sum2a.svg"/>
+<image mime-type="application/postscript" src="../../media/sum2a.eps" for="pdf"/></media>
+</subfigure>
+<subfigure id="sum3a">
+<media id="sum3a-plot" alt="Image">
+<image mime-type="image/svg+xml" src="../../media/sum3a.svg"/>
+<image mime-type="application/postscript" src="../../media/sum3a.eps" for="pdf"/></media>
+</subfigure>
+<caption>The sum of two vectors in $R^N$ is another vector in $R^N$.</caption></figure></para><para id="eip-297"><title>The Vector Space $C^N$</title>Ordered sequences of $N$ complex numbers form the vector space $C^N$, just like their real counterparts do in $R^N$:
+$x=\begin{bmatrix}x[0] \\ x[1] \\ \vdots \\ x[N-1] \end{bmatrix}$, where $x[n]\in C$
+So each element of a vector in $C^N$ is a complex number, which can be represented either in terms of its real and imaginary parts, or in terms of its magnitude and phase. The vector as a whole can also be represented in those ways, either in rectangular form
+Rectangular form
+$x
+= \begin{bmatrix} \Re{x[0]} + j \Im{x[0]} \\ \Re{x[1]} + j \Im{x[1]} \\ \vdots \\ \Re{x[N-1]} + j \Im{x[N-1]} \end{bmatrix}
+= {\rm Re} \left\{ \begin{bmatrix} x[0] \\ x[1] \\ \vdots \\ x[N-1] \end{bmatrix}\right\}
++ j\: {\rm Im} \left\{ \begin{bmatrix} x[0] \\ x[1] \\ \vdots \\ x[N-1] \end{bmatrix}\right\}
+$
+or in polar form
+$
+x
+= \begin{bmatrix} |x[0]|\,e^{j \angle x[0]} \\ |x[1]|\,e^{j \angle x[1]} \\ \vdots \\ |x[N-1]|\,e^{j \angle x[N-1]} \end{bmatrix}
+$.
+</para></content>
+
+</document>
